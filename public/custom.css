@@ -1,0 +1,51 @@
+.box-body-form {
+	margin-left: 50px;
+	margin-right: 50px;
+}
+
+.input-control {
+	font-size: 40px;
+	height: 100px;
+	width: 100%;
+	border-radius: 0px;
+	color: #000;
+	margin-top: 25px;
+	text-align: center;
+}
+
+/* .detalhes-control {
+	margin-top: 50px;
+} */
+.erro-control {
+	font-size: 55px;
+}
+
+.input-control::-webkit-input-placeholder {
+	color: #c0392b;
+}
+
+:-moz-placeholder {
+	/* Firefox 18- */
+	color: #c0392b;
+}
+
+::-moz-placeholder {
+	/* Firefox 19+ */
+	color: #c0392b;
+}
+
+:-ms-input-placeholder {
+	color: #c0392b;
+}
+
+.erro-control-msg {
+	font-size: 45px;
+}
+
+.count-control {
+	font-size: 100px;
+}
+
+.id-control {
+	font-size: 55px;
+}
