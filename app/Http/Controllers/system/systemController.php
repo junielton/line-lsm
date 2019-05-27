@@ -2,11 +2,12 @@
 
 namespace line\Http\Controllers\system;
 
-use Excel;
+//use Excel;
 use Illuminate\Http\Request;
 use line\Http\Controllers\Controller;
 use line\Model\Control;
-use line\Model\CsvData;
+use line\Model\Dataimp;
+//use line\Model\CsvData;
 use Redirect;
 
 class systemController extends Controller
@@ -16,6 +17,7 @@ class systemController extends Controller
     {
         return view('section.home');
     }
+
     //formulário para cadastro
     public function cadastroForm()
     {
@@ -34,20 +36,17 @@ class systemController extends Controller
     // método para deletar pedidos
     public function remove($id)
     {
-        dd("Funciona");
-        $delete = Control::where('Pedido_id', $id)->where('status', 'deposito');
+        $delete = Control::where('Pedido_id', $id)->where('status', 'cliente');
         $delete->delete();
-
         return Redirect::back();
     }
-
-
+    //lista os pedido para controle
     public function controleList()
     {
         $pedidos = Control::where('status', 'deposito')->groupBy('Pedido_id')->get();
         return view('section.controle', compact('pedidos'));
     }
-
+    //lista pacotes para controle
     public function contPacote()
     {
         $pacotes = Control::all();
@@ -57,7 +56,6 @@ class systemController extends Controller
     public function altPacote($id)
     {
         $params = Control::all()->where('Id', $id);
-        //dd($params);
         return view('form.alt-form', compact('params'));
     }
     //formulario para alterar nome de clientes
@@ -68,10 +66,8 @@ class systemController extends Controller
     }
 
     //Editar clientes por pedido
-    //here
     public function pedidoEdit(Request $request)
     {
-
         $answer = $request->input();
         $data = new Control($answer);
         $data->where('Pedido_id', $data->Pedido_id)
@@ -83,10 +79,8 @@ class systemController extends Controller
     }
 
     //alterar o status manualmente
-    //here
-    public function alterParaFinalizado()
+    public function alterParaFinalizado($id)
     {
-        dd("Funciona");
         Control::where('Pedido_id', $id)
             ->where('status', 'cliente')
             ->update(['status' => 'finalizado']);
@@ -94,28 +88,24 @@ class systemController extends Controller
     }
 
     //here
-    public function alterParaDeposito()
+    public function alterParaDeposito($id)
     {
-        dd("Funciona");
-
-        Control::where('Pedido_id', $id)
+        Control::where('Id', $id)
             ->where('status', 'cliente')
-            ->update(['status' => 'finalizado']);
+            ->update(['status' => 'deposito']);
         return Redirect::back();
     }
 
     //here
-    public function alterParaCliente()
+    public function alterParaCliente($id)
     {
-        dd("Funciona");
-
-        Control::where('Pedido_id', $id)
+        Control::where('Id', $id)
             ->where('status', 'deposito')
-            ->update(['status' => 'finalizado']);
+            ->update(['status' => 'cliente']);
         return Redirect::back();
     }
 
-    //metodo para fazer alteração de pacotes
+    //método para fazer alteração de pacotes
     public function pacoteUp(Request $request)
     {
         $answer = $request->input();
@@ -202,7 +192,6 @@ class systemController extends Controller
         $id = $request->input();
         //verifica se o id existe
         //if ($test = Control::find($id)->toArray() == true) {
-        //dd($id);
         //faz o update do status
         Control::where('Id', $id)->where('status', 'carga')->update(['status' => 'deposito']);
         //faz a contagem de pacotes restantes
@@ -215,7 +204,6 @@ class systemController extends Controller
         //retorna a view com as variáveis
         return view('form.descarregar', compact('pacotes', 'count', 'id', 'alert'));
         // } else {
-        //dd($id);
         //faz a contagem de pacotes restantes
         $count = Control::all()->where('status', 'carga')->count();
         //lista os pacotes restantes organizados id
@@ -262,7 +250,8 @@ class systemController extends Controller
     function list()
     {
         $itens = Control::get();
-        return view('section.csv-in', compact('itens'));
+        $data = Dataimp::all();
+        return view('section.csv-in', compact('itens', 'data'));
     }
 
     // public function productsImport(Request $request)
@@ -270,7 +259,6 @@ class systemController extends Controller
     //     if (true) {
     //         $path = $request->file('relatorio')->getPathName();
     //         $data = \Excel::load($path)->get();
-    //         //   dd($data);
     //         if ($data->count()) {
     //             foreach ($data as $value) {
     //                 $product_list[] = [

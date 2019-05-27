@@ -70,12 +70,15 @@
                             </li>
                         -->
                         <li>
+                            <input class="btn btn-lg btn-danger" type="button" value="Imprimir" onclick="window.print()" />
+                        </li>
+                        <li>
                             <input class="btn btn-lg btn-danger" type="button" value="Voltar"
                                 onClick="history.go(-1)" />
                         </li>
-                        <li>
+                        {{-- <li>
                             <input class="btn btn-lg btn-danger" type="button" value="Fechar" onclick="self.close()" />
-                        </li>
+                        </li> --}}
                     </ul>
                 </div>
             </nav>

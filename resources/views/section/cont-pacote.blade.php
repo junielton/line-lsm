@@ -44,10 +44,10 @@
                 <h4>{{ ucwords($p->Nome_projeto)}}</h4>
             </td>
             <td class="text-center">
-                <a class="btn btn-md btn-success" href="{{ route('pedido.deposito')}}">Deposito</a>
+                <a class="btn btn-md btn-success" href="{{ route('pedido.deposito' , $p->Id)}}">Deposito</a>
             </td>
             <td class="text-center">
-                <a class="btn btn-md btn-info" href="{{ route('pedido.cliente')}}">Cliente</a>
+                <a class="btn btn-md btn-info" href="{{ route('pedido.cliente' , $p->Id)}}">Cliente</a>
             </td>
             <td class="text-center">
                 <a href="{{ route('alt-pacote', $p -> Id )}}">

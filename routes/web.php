@@ -35,12 +35,11 @@ $this->get('/controle/remove/pedido/{id?}', 'system\systemController@remove')->n
 
 //Rotas para update de status manualmente
 //here
-$this->get('/status/deposito', 'system\systemController@alterParaDeposito')->name('pedido.deposito');
-$this->get('/controle/status/cliente', 'system\systemController@alterParaCliente')->name('pedido.cliente');
-$this->get('/controle/status/finalizado', 'system\systemController@alterParaFinalizado')->name('pedido.finalizado');
+$this->get('/controle/status/deposito/{id}', 'system\systemController@alterParaDeposito')->name('pedido.deposito');
+$this->get('/controle/status/cliente/{id}', 'system\systemController@alterParaCliente')->name('pedido.cliente');
+$this->get('/controle/status/finalizado/{id}', 'system\systemController@alterParaFinalizado')->name('pedido.finalizado');
 
 //Rota para editar o nome do cliente do pedido
-//here
 $this->get('/controle/edita/pedido/{id}', 'system\systemController@pedidoForm')->name('pedido.form');
 $this->get('/controle/pedido/edit/{id?}', 'system\systemController@pedidoEdit')->name('pedido.edit');
 

@@ -41,7 +41,7 @@
             </td>
 
             <td class="text-center">
-                <a class="btn btn-md btn-warning" href="{{ route('pedido.finalizado')}}">Finalizar Pedido</a>
+                <a class="btn btn-md btn-warning" href="{{ route('pedido.finalizado', $p->Pedido_id)}}">Finalizar Pedido</a>
             </td>
             <td class="text-center">
                 <a class="btn btn-md btn-danger" href="{{ route('remove', $p->Pedido_id) }}">Excluir Pedido</a>

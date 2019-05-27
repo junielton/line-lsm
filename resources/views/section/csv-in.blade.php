@@ -31,7 +31,9 @@
                     <br /><Br />
 
                     <a target="_blank"
-                        href="https://drive.google.com/drive/folders/1jW-BVJ6RjeasgFJtpAmgVNAKPpki3Zee?usp=sharing"
+                    @foreach ($data as $d)
+                    href="{{$d->link}}"
+                    @endforeach
                         class="btn btn-warning" style="margin-right: 15px;">Download - CSV</a>
                     <!-- <a href="{{ route('product.export',['type'=>'xlsx']) }}" class="btn btn-primary"
                         style="margin-right: 15px;">Download - Excel xlsx</a> -->
