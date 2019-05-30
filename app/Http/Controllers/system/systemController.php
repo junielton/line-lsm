@@ -318,13 +318,9 @@ class systemController extends Controller
     //ini option 2
     public function productsImport(Request $request)
     {
-        $headers = 1;
-        //$data = array_slice($file, 1);
         $path = $request->file('relatorio')->getPathName();
         if (($handle = fopen($path, 'r')) !== FALSE) {
-            if ($headers == 1) {
-                fgets($handle); // read and ignore the first line
-            }
+            fgetcsv($handle);
             while (($data = fgetcsv($handle, 1000, ',')) !== FALSE) {
                 $csv_data = new Control();
                 dd($data);
