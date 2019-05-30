@@ -15,7 +15,8 @@ class systemController extends Controller
     //home
     public function index()
     {
-        return view('section.home');
+        $data = Dataimp::all();
+        return view('section.home', compact('data'));
     }
 
     //formulário para cadastro
@@ -325,8 +326,8 @@ class systemController extends Controller
                 fgets($handle); // read and ignore the first line
             }
             while (($data = fgetcsv($handle, 1000, ',')) !== FALSE) {
-
                 $csv_data = new Control();
+                dd($data);
                 $csv_data->Id = $data[0];
                 $csv_data->Cliente = $data[1];
                 $csv_data->Pedido_id = $data[2];
